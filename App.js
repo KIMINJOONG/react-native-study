@@ -3,6 +3,8 @@ import { AppLoading, Font, Asset } from "expo";
 import { StatusBar } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import MainNavigation from "./navigation/MainNavigation";
+import store from "./store";
+import { Provider } from "react-redux";
 
 export default class App extends React.Component {
   state = {
@@ -27,10 +29,12 @@ export default class App extends React.Component {
     const {loaded} = this.state;
     if(loaded) {
       return (
-        <>
-          <StatusBar barStyle="light-content" />
-          <MainNavigation />
-        </>
+        <Provider store={store}>
+          <>
+            <StatusBar barStyle="light-content" />
+            <MainNavigation />
+          </>
+        </Provider>
       );
     } else {
       return (
