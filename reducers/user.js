@@ -43,11 +43,14 @@ export const initialState = {
   export const signUpAction = data => {
     return {
       type: SIGN_UP_REQUEST,
-      data: data
+      data
     };
   };
-  export const loginAction = {
-    type: LOG_IN_REQUEST
+  export const loginAction = data => {
+    return {
+      type: LOG_IN_REQUEST,
+      data
+    }
   };
   
   export const logoutAction = {
@@ -75,6 +78,22 @@ export const initialState = {
           ...state,
           isSignedUp: false,
           isSigningUp: false,
+        }
+      }
+      case LOG_IN_REQUEST: {
+        return {
+          ...state
+        }
+      }
+      case LOG_IN_SUCCESS: {
+        return {
+          ...state,
+          me: action.data
+        }
+      }
+      case LOG_IN_FAILURE: {
+        return {
+          ...state
         }
       }
       default: {

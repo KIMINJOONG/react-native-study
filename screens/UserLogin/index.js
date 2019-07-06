@@ -1,11 +1,11 @@
 import UserLoginContainer from "./UserLoginContainer";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { } from "../../reducers/user";
+import {loginAction} from "../../reducers/user";
 
 const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ }, dispatch);
+  bindActionCreators({loginAction}, dispatch);
 
 export default connect(
   mapStateToProps,

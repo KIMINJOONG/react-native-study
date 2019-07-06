@@ -17,7 +17,11 @@ class UserLoginContainer extends Component {
 
       onPressButton = () => {
           const { id, password } = this.state;
-          console.log(id, password);
+          const data = {
+              id,
+              password
+          };
+          this.props.loginAction(data);
       };
 
       onChangeText = (inputName, value) => {
