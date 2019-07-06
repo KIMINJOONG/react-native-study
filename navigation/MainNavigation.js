@@ -1,6 +1,7 @@
 import {createStackNavigator, createAppContainer } from "react-navigation";
 import TabNavigation from "./TabNavigation";
 import DetailScreen from "../screens/Detail";
+import UserJoinScreen from '../screens/UserJoin';
 import { headerStyles } from "./config";
 
 const MainNavigation = createStackNavigator(
@@ -10,6 +11,12 @@ const MainNavigation = createStackNavigator(
         },
         Detail: {
             screen: DetailScreen,
+            navigationOptions: {
+                ...headerStyles,
+            }
+        },
+        UserJoin: {
+            screen: UserJoinScreen,
             navigationOptions: {
                 ...headerStyles,
             }

@@ -4,6 +4,7 @@ import {createBottomTabNavigator, createAppContainer} from "react-navigation";
 import MoviesScreen from "../screens/Movie";
 import TVScreen from "../screens/TV";
 import Location from '../screens/Location';
+import UserLogin from '../screens/UserLogin';
 import SearchScreen from "../screens/Search";
 import { BG_COLOR } from "../constants/Colors";
 import TabBarIcon from "../components/TabBarIcon";
@@ -42,6 +43,17 @@ const TabNavigation = createBottomTabNavigator(
                     <TabBarIcon
                         focused={focused}
                         name={Platform.OS === "ios" ? "ios-map" : "md-map"}
+                    />
+                )
+            }
+        },
+        UserLogin: {
+            screen: createStack(UserLogin, "로그인"),
+            navigationOptions: {
+                tabBarIcon: ({focused}) => (
+                    <TabBarIcon
+                        focused={focused}
+                        name={Platform.OS === "ios" ? "ios-man" : "md-man"}
                     />
                 )
             }
