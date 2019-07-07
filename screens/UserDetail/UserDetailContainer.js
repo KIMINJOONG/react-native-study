@@ -6,17 +6,21 @@ class UserDetailContainer extends Component {
     async componentDidMount(){
         const token = await AsyncStorage.getItem('token');
         if(!token){
-            this.props.navigation.navigate('Login');
+            this.props.navigation.navigate('UserLogin');
         }
     }
     handleLogout = () => {
         this.props.logoutAction();
+        this.props.navigation.navigate('UserLogin');
         alert('로그아웃 되었습니다.');
-        this.props.navigation.navigate('Movie');
+        
     };
     render(){
         return(
-            <UserDetailPresenter handleLogout={this.handleLogout} />
+            <UserDetailPresenter 
+                handleLogout={this.handleLogout}
+                me={this.props.me}
+            />
         );
     }
 }

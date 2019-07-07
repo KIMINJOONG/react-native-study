@@ -84,18 +84,21 @@ export const initialState = {
       }
       case LOG_IN_REQUEST: {
         return {
-          ...state
+          ...state,
+          isLoggingIn: false
         }
       }
       case LOG_IN_SUCCESS: {
         return {
           ...state,
-          me: action.data
+          me: action.data,
+          isLoggingIn: true
         }
       }
       case LOG_IN_FAILURE: {
         return {
-          ...state
+          ...state,
+          isLoggingIn: false
         }
       }
       case LOG_OUT_REQUEST: {
