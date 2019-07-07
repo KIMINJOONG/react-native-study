@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {loginAction} from "../../reducers/user";
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  me : state.user.me
+});
 const mapDispatchToProps = dispatch =>
   bindActionCreators({loginAction}, dispatch);
 

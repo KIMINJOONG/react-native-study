@@ -1,6 +1,7 @@
 import { call, put, all, fork, takeLatest, takeEvery } from "redux-saga/effects";
-import { SIGN_UP_REQUEST, SIGN_UP_SUCCESS, SIGN_UP_FAILURE, LOG_IN_SUCCESS, LOG_IN_FAILURE, LOG_IN_REQUEST } from "../reducers/user";
+import { SIGN_UP_REQUEST, SIGN_UP_SUCCESS, SIGN_UP_FAILURE, LOG_IN_SUCCESS, LOG_IN_FAILURE, LOG_IN_REQUEST, LOG_OUT_REQUEST, LOG_OUT_SUCCESS, LOG_OUT_FAILURE } from "../reducers/user";
 import axios from 'axios';
+import { AsyncStorage } from 'react-native';
 function signUpAPI(signUpData){
   return axios.post("/user/", signUpData);
 }
@@ -10,7 +11,7 @@ function* signUp(action) {
     const result = yield call(signUpAPI, action.data);
     yield put({
       type: SIGN_UP_SUCCESS,
-      data: result
+      data: result.data
     });
   }catch(e){
     console.error(e);
@@ -31,9 +32,10 @@ function loginAPI(loginData){
 function* login(action) {
   try{
     const result = yield call(loginAPI, action.data);
+    yield AsyncStorage.setItem('token', result.data.token);
     yield put({
       type: LOG_IN_SUCCESS,
-      data: result
+      data: result.data.user
     });
   }catch(e){
     console.error(e);
@@ -47,9 +49,28 @@ function* watchLogin(){
   yield takeEvery(LOG_IN_REQUEST, login)
 }
 
+function* logout() {
+  try{
+    yield AsyncStorage.removeItem('token');
+    yield put({
+      type: LOG_OUT_SUCCESS,
+    });
+  }catch(e){
+    console.error(e);
+    yield put({
+      type: LOG_OUT_FAILURE
+    });
+  }
+  
+}
+function* watchLogout(){
+  yield takeEvery(LOG_OUT_REQUEST, logout);
+}
+
 export default function* userSaga() {
   yield all([
     fork(watchSignUp),
-    fork(watchLogin)
+    fork(watchLogin),
+    fork(watchLogout)
   ]);
 }

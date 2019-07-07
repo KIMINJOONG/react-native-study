@@ -53,9 +53,11 @@ export const initialState = {
     }
   };
   
-  export const logoutAction = {
-    type: LOG_OUT_REQUEST
-  };
+  export const logoutAction = () => {
+    return {
+      type: LOG_OUT_REQUEST
+    }
+  }
   
   const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -70,7 +72,7 @@ export const initialState = {
         return {
           ...state,
           isSignedUp: true,
-          isSigningUp: false
+          isSigningUp: false,
         }
       }
       case SIGN_UP_FAILURE: {
@@ -92,6 +94,21 @@ export const initialState = {
         }
       }
       case LOG_IN_FAILURE: {
+        return {
+          ...state
+        }
+      }
+      case LOG_OUT_REQUEST: {
+        return {
+          ...state
+        }
+      }
+      case LOG_OUT_SUCCESS: {
+        return {
+          ...state
+        }
+      }
+      case LOG_OUT_FAILURE: {
         return {
           ...state
         }

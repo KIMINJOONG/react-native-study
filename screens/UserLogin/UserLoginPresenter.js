@@ -39,6 +39,9 @@ const Text = styled.Text`
 const UserLoginPresenter = ({pushLogin, navigation, onPressButton, onChangeText, id, password}) => (
     <Container>
         <TextInputContainer>
+            <Text>
+                아이디 :
+            </Text>
             <TextInput 
                 inputName={"id"} 
                 isFocus={true} 
@@ -46,6 +49,9 @@ const UserLoginPresenter = ({pushLogin, navigation, onPressButton, onChangeText,
                 placeholder={"아이디를 입력해주세요"} 
                 handleTextInput={onChangeText} 
             />
+            <Text>
+                비밀번호 :
+            </Text>
             <TextInput 
                 inputName={"password"}
                 isFocus={true} 
