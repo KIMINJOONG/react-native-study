@@ -6,7 +6,7 @@ class UserDetailContainer extends Component {
     async componentDidMount(){
         const token = await AsyncStorage.getItem('token');
         if(!token){
-            this.props.navigation.navigate('UserLogin');
+            //this.props.navigation.navigate('UserLogin');
         }
     }
     handleLogout = () => {
